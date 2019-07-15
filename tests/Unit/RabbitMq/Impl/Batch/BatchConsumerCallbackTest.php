@@ -6,7 +6,7 @@ use Bunny\Channel;
 use Bunny\Client;
 use Bunny\Message;
 use Exception;
-use Hanaboso\CommonsBundle\Metrics\InfluxDbSender;
+use Hanaboso\CommonsBundle\Metrics\Impl\InfluxDbSender;
 use Hanaboso\CommonsBundle\Utils\PipesHeaders;
 use Hanaboso\PipesPhpSdk\RabbitMq\Impl\Batch\BatchActionInterface;
 use Hanaboso\PipesPhpSdk\RabbitMq\Impl\Batch\BatchConsumerCallback;

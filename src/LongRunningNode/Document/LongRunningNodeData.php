@@ -5,10 +5,10 @@ namespace Hanaboso\PipesPhpSdk\LongRunningNode\Document;
 use Bunny\Message;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Exception;
+use Hanaboso\CommonsBundle\Database\Traits\Document\CreatedTrait;
+use Hanaboso\CommonsBundle\Database\Traits\Document\IdTrait;
+use Hanaboso\CommonsBundle\Database\Traits\Document\UpdatedTrait;
 use Hanaboso\CommonsBundle\Process\ProcessDto;
-use Hanaboso\CommonsBundle\Traits\Document\CreatedTrait;
-use Hanaboso\CommonsBundle\Traits\Document\IdTrait;
-use Hanaboso\CommonsBundle\Traits\Document\UpdatedTrait;
 use Hanaboso\CommonsBundle\Utils\DateTimeUtils;
 use Hanaboso\CommonsBundle\Utils\PipesHeaders;
 

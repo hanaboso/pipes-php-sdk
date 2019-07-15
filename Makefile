@@ -14,10 +14,6 @@ build-dev:
 	docker push ${IMAGE}
 
 # Docker
-docker-up: .env
-	$(DC) pull
-	$(DC) up -d
-
 docker-up-force: .env
 	$(DC) pull
 	$(DC) up -d --force-recreate --remove-orphans

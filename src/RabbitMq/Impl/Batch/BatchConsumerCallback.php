@@ -7,7 +7,7 @@ use Bunny\Message;
 use Exception;
 use Hanaboso\CommonsBundle\Enum\MetricsEnum;
 use Hanaboso\CommonsBundle\Exception\DateTimeException;
-use Hanaboso\CommonsBundle\Metrics\InfluxDbSender;
+use Hanaboso\CommonsBundle\Metrics\Impl\InfluxDbSender;
 use Hanaboso\CommonsBundle\Utils\CurlMetricUtils;
 use Hanaboso\CommonsBundle\Utils\PipesHeaders;
 use InvalidArgumentException;
