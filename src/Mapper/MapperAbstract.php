@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Hanaboso\PipesPhpSdk\Joiner;
+namespace Hanaboso\PipesPhpSdk\Mapper;
 
 use Hanaboso\PipesPhpSdk\Authorization\Base\ApplicationInterface;
 
 /**
- * Class JoinerAbstract
+ * Class MapperAbstract
  *
- * @package Hanaboso\PipesPhpSdk\Joiner
+ * @package Hanaboso\PipesPhpSdk\Mapper
  */
-abstract class JoinerAbstract implements JoinerInterface
+abstract class MapperAbstract implements MapperInterface
 {
 
     /**
@@ -18,29 +18,11 @@ abstract class JoinerAbstract implements JoinerInterface
     protected $application;
 
     /**
-     * @param array $data
-     * @param int   $count
-     *
-     * @return string[]
-     */
-    public function process(array $data, int $count): array
-    {
-        $this->save($data);
-
-        $res = ['Incomplete data'];
-        if ($this->isDataComplete($count)) {
-            $res = $this->runCallback();
-        }
-
-        return $res;
-    }
-
-    /**
      * @param ApplicationInterface $application
      *
-     * @return JoinerInterface
+     * @return MapperInterface
      */
-    public function setApplication(ApplicationInterface $application): JoinerInterface
+    public function setApplication(ApplicationInterface $application): MapperInterface
     {
         $this->application = $application;
 

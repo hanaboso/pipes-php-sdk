@@ -1,15 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Hanaboso\PipesPhpSdk\Joiner;
+namespace Hanaboso\PipesPhpSdk\LongRunningNode\Model;
 
 use Hanaboso\PipesPhpSdk\Authorization\Base\ApplicationInterface;
 
 /**
- * Class JoinerAbstract
- *
- * @package Hanaboso\PipesPhpSdk\Joiner
+ * Class LongRunningNodeAbstract
  */
-abstract class JoinerAbstract implements JoinerInterface
+abstract class LongRunningNodeAbstract implements LongRunningNodeInterface
 {
 
     /**
@@ -18,29 +16,11 @@ abstract class JoinerAbstract implements JoinerInterface
     protected $application;
 
     /**
-     * @param array $data
-     * @param int   $count
-     *
-     * @return string[]
-     */
-    public function process(array $data, int $count): array
-    {
-        $this->save($data);
-
-        $res = ['Incomplete data'];
-        if ($this->isDataComplete($count)) {
-            $res = $this->runCallback();
-        }
-
-        return $res;
-    }
-
-    /**
      * @param ApplicationInterface $application
      *
-     * @return JoinerInterface
+     * @return LongRunningNodeInterface
      */
-    public function setApplication(ApplicationInterface $application): JoinerInterface
+    public function setApplication(ApplicationInterface $application): LongRunningNodeInterface
     {
         $this->application = $application;
 
