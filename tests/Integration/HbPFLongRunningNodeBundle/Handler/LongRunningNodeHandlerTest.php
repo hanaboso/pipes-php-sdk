@@ -78,40 +78,55 @@ final class LongRunningNodeHandlerTest extends DatabaseTestCaseAbstract
 
     /**
      * @covers \Hanaboso\PipesPhpSdk\HbPFLongRunningNodeBundle\Handler\LongRunningNodeHandler::getTasksById
+     * @covers \Hanaboso\PipesPhpSdk\LongRunningNode\Model\LongRunningNodeFilter::prepareSearchQuery
      *
      * @throws Exception
      */
     public function testGetTasksById(): void
     {
-        $result = $this->handler->getTasksById(new GridRequestDto([]), '1', 'null');
         self::assertEquals(
             [
-                'limit'  => 10,
-                'offset' => 0,
-                'count'  => 0,
-                'total'  => 0,
                 'items'  => [],
+                'filter' => [],
+                'sorter' => [],
+                'search' => NULL,
+                'paging' => [
+                    'page'         => 1,
+                    'itemsPerPage' => 10,
+                    'total'        => 0,
+                    'nextPage'     => 1,
+                    'lastPage'     => 1,
+                    'previousPage' => 1,
+                ],
             ],
-            $result,
+            $this->handler->getTasksById(new GridRequestDto([]), '1', 'null'),
         );
     }
 
     /**
      * @covers \Hanaboso\PipesPhpSdk\HbPFLongRunningNodeBundle\Handler\LongRunningNodeHandler::getTasks
+     * @covers \Hanaboso\PipesPhpSdk\LongRunningNode\Model\LongRunningNodeFilter::prepareSearchQuery
+     *
      * @throws Exception
      */
     public function testGetTasks(): void
     {
-        $result = $this->handler->getTasks(new GridRequestDto([]), '1', 'null');
         self::assertEquals(
             [
-                'limit'  => 10,
-                'offset' => 0,
-                'count'  => 0,
-                'total'  => 0,
                 'items'  => [],
+                'filter' => [],
+                'sorter' => [],
+                'search' => NULL,
+                'paging' => [
+                    'page'         => 1,
+                    'itemsPerPage' => 10,
+                    'total'        => 0,
+                    'nextPage'     => 1,
+                    'lastPage'     => 1,
+                    'previousPage' => 1,
+                ],
             ],
-            $result,
+            $this->handler->getTasks(new GridRequestDto([]), '1', 'null'),
         );
     }
 
@@ -125,8 +140,6 @@ final class LongRunningNodeHandlerTest extends DatabaseTestCaseAbstract
 
     /**
      * @covers \Hanaboso\PipesPhpSdk\HbPFLongRunningNodeBundle\Handler\LongRunningNodeHandler::updateLongRunningNode
-     *
-     * @throws Exception
      */
     public function testUpdateRunningNode(): void
     {
@@ -153,8 +166,6 @@ final class LongRunningNodeHandlerTest extends DatabaseTestCaseAbstract
 
     /**
      * @covers \Hanaboso\PipesPhpSdk\HbPFLongRunningNodeBundle\Handler\LongRunningNodeHandler::updateLongRunningNode
-     *
-     * @throws Exception
      */
     public function testUpdateRunningNodeErr(): void
     {

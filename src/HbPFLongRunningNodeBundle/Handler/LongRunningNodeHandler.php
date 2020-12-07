@@ -6,6 +6,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Exception;
 use Hanaboso\CommonsBundle\Process\ProcessDto;
+use Hanaboso\MongoDataGrid\GridFilterAbstract;
 use Hanaboso\MongoDataGrid\GridRequestDto;
 use Hanaboso\PipesPhpSdk\HbPFLongRunningNodeBundle\Loader\LongRunningNodeLoader;
 use Hanaboso\PipesPhpSdk\LongRunningNode\Document\LongRunningNodeData;
@@ -100,22 +101,33 @@ final class LongRunningNodeHandler
      */
     public function getTasksById(GridRequestDto $dto, string $topologyId, ?string $nodeId = NULL): array
     {
-        $dto->setAdditionalFilters([LongRunningNodeData::TOPOLOGY_ID => $topologyId]);
+        $dto->setAdditionalFilters(
+            [
+                [
+                    [
+                        GridFilterAbstract::COLUMN   => LongRunningNodeData::TOPOLOGY_ID,
+                        GridFilterAbstract::OPERATOR => GridFilterAbstract::EQ,
+                        GridFilterAbstract::VALUE    => $topologyId,
+                    ],
+                ],
+            ],
+        );
 
         if ($nodeId) {
-            $dto->setAdditionalFilters([LongRunningNodeData::NODE_ID => $nodeId]);
+            $dto->setAdditionalFilters(
+                [
+                    [
+                        [
+                            GridFilterAbstract::COLUMN   => LongRunningNodeData::NODE_ID,
+                            GridFilterAbstract::OPERATOR => GridFilterAbstract::EQ,
+                            GridFilterAbstract::VALUE    => $nodeId,
+                        ],
+                    ],
+                ],
+            );
         }
 
-        $result = $this->filter->getData($dto)->toArray();
-        $count  = $dto->getParamsForHeader()['total'];
-
-        return [
-            'limit'  => $dto->getLimit(),
-            'offset' => (($dto->getPage() ?? 1) - 1) * $dto->getLimit(),
-            'count'  => count($result),
-            'total'  => $count,
-            'items'  => $result,
-        ];
+        return GridFilterAbstract::getGridResponse($dto, $this->filter->getData($dto)->toArray());
     }
 
     /**
@@ -128,22 +140,33 @@ final class LongRunningNodeHandler
      */
     public function getTasks(GridRequestDto $dto, string $topologyName, ?string $nodeName = NULL): array
     {
-        $dto->setAdditionalFilters([LongRunningNodeData::TOPOLOGY_NAME => $topologyName]);
+        $dto->setAdditionalFilters(
+            [
+                [
+                    [
+                        GridFilterAbstract::COLUMN   => LongRunningNodeData::TOPOLOGY_NAME,
+                        GridFilterAbstract::OPERATOR => GridFilterAbstract::EQ,
+                        GridFilterAbstract::VALUE    => $topologyName,
+                    ],
+                ],
+            ],
+        );
 
         if ($nodeName) {
-            $dto->setAdditionalFilters([LongRunningNodeData::NODE_NAME => $nodeName]);
+            $dto->setAdditionalFilters(
+                [
+                    [
+                        [
+                            GridFilterAbstract::COLUMN   => LongRunningNodeData::NODE_NAME,
+                            GridFilterAbstract::OPERATOR => GridFilterAbstract::EQ,
+                            GridFilterAbstract::VALUE    => $nodeName,
+                        ],
+                    ],
+                ],
+            );
         }
 
-        $result = $this->filter->getData($dto)->toArray();
-        $count  = $dto->getParamsForHeader()['total'];
-
-        return [
-            'limit'  => $dto->getLimit(),
-            'offset' => (($dto->getPage() ?? 1) - 1) * $dto->getLimit(),
-            'count'  => count($result),
-            'total'  => $count,
-            'items'  => $result,
-        ];
+        return GridFilterAbstract::getGridResponse($dto, $this->filter->getData($dto)->toArray());
     }
 
     /**

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f69a00d57e2e5a41107c4ad7786ba480",
+    "content-hash": "bcf623046038062285adcd82f53341c0",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1312,26 +1312,29 @@
         },
         {
             "name": "hanaboso/mongo-data-grid",
-            "version": "1.3.1",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hanaboso/mongo-data-grid.git",
-                "reference": "0c8805207b96a7528a41d3dcdf9ca3e91ad9a938"
+                "reference": "6757a1abf558fb528163d01c4793427beb1f5b6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hanaboso/mongo-data-grid/zipball/0c8805207b96a7528a41d3dcdf9ca3e91ad9a938",
-                "reference": "0c8805207b96a7528a41d3dcdf9ca3e91ad9a938",
+                "url": "https://api.github.com/repos/hanaboso/mongo-data-grid/zipball/6757a1abf558fb528163d01c4793427beb1f5b6c",
+                "reference": "6757a1abf558fb528163d01c4793427beb1f5b6c",
                 "shasum": ""
             },
             "require": {
-                "doctrine/mongodb-odm": "^2.0",
-                "ext-json": "*",
+                "doctrine/mongodb-odm": "^2.2",
+                "ext-ctype": "*",
+                "ext-intl": "*",
+                "ext-mbstring": "*",
                 "ext-mongodb": "*",
-                "php": "^7.4 || ^8.0"
+                "hanaboso/utils": "^1.1",
+                "php": "^8.0"
             },
             "require-dev": {
-                "hanaboso/php-check-utils": "^1.0"
+                "hanaboso/php-check-utils": "^1.2"
             },
             "type": "library",
             "autoload": {
@@ -1341,13 +1344,13 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "proprietary"
+                "Apache-2.0"
             ],
             "description": "MongoDataGrid",
             "support": {
-                "source": "https://github.com/hanaboso/mongo-data-grid/tree/1.3.1"
+                "source": "https://github.com/hanaboso/mongo-data-grid/tree/1.5.0"
             },
-            "time": "2021-05-03T07:43:27+00:00"
+            "time": "2021-04-26T12:23:19+00:00"
         },
         {
             "name": "hanaboso/rabbit-mq-bundle",
