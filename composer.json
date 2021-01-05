@@ -1,7 +1,7 @@
 {
     "name": "hanaboso/pipes-php-sdk",
     "description": "PHP sdk for PipesFramework",
-    "version": "1.5.9",
+    "version": "1.5.10",
     "license": "GPL-3.0-or-later",
     "require": {
         "php": "^7.4",
@@ -13,16 +13,16 @@
         "hanaboso/mongo-data-grid": "~1.3.0",
         "hanaboso/rabbit-mq-bundle": "^1.4",
         "league/oauth2-client": "^2.6",
-        "phpoffice/phpspreadsheet": "^1.15",
-        "symfony/monolog-bundle": "^3.6",
-        "symfony/yaml": "^5.2"
+        "phpoffice/phpspreadsheet": "^1.16",
+        "symfony/monolog-bundle": "^v3.6",
+        "symfony/yaml": "^v5.2"
     },
     "require-dev": {
         "hanaboso/php-check-utils": "^1.1",
         "hanaboso/rest-bundle": "^1.0",
-        "symfony/debug-bundle": "^5.2",
-        "symfony/security-bundle": "^5.2",
-        "symfony/serializer": "^5.2"
+        "symfony/debug-bundle": "^v5.2",
+        "symfony/security-bundle": "^v5.2",
+        "symfony/serializer": "^v5.2"
     },
     "autoload": {
         "psr-4": {
