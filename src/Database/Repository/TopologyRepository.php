@@ -54,6 +54,25 @@ final  class TopologyRepository extends DocumentRepository
     }
 
     /**
+     * @param bool $enabled
+     *
+     * @return int
+     * @throws MongoDBException
+     */
+    public function getCountByEnable(bool $enabled): int
+    {
+        /** @var int $result */
+        $result = $this->createQueryBuilder()
+            ->field('deleted')->equals(FALSE)
+            ->field('enabled')->equals($enabled)
+            ->field('visibility')->equals(TopologyStatusEnum::PUBLIC)
+            ->count()
+            ->getQuery()->execute();
+
+        return $result;
+    }
+
+    /**
      * @param string $name
      *
      * @return int
