@@ -79,7 +79,7 @@ final class CustomNodeControllerTest extends ControllerTestCaseAbstract
             ->disableOriginalConstructor()
             ->getMock();
         $handler->method('process')->willThrowException(new PipesFrameworkException());
-        self::$container->set('hbpf.handler.custom_node', $handler);
+        self::getContainer()->set('hbpf.handler.custom_node', $handler);
 
         $this->client->request(
             'POST',
@@ -191,7 +191,7 @@ final class CustomNodeControllerTest extends ControllerTestCaseAbstract
                 },
             );
 
-        self::$container->set('hbpf.handler.custom_node', $joinerHandlerMock);
+        self::getContainer()->set('hbpf.handler.custom_node', $joinerHandlerMock);
     }
 
     /**
@@ -205,7 +205,7 @@ final class CustomNodeControllerTest extends ControllerTestCaseAbstract
         $handler->method('getCustomNodes')->willThrowException(new Exception());
         $handler->method('process')->willThrowException(new Exception());
         $handler->method('processTest')->willThrowException(new CustomNodeException());
-        self::$container->set('hbpf.handler.custom_node', $handler);
+        self::getContainer()->set('hbpf.handler.custom_node', $handler);
     }
 
 }

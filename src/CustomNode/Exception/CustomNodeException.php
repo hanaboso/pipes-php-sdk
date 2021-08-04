@@ -13,6 +13,5 @@ final class CustomNodeException extends PipesFrameworkExceptionAbstract
 {
 
     public const NO_PROCESS_ACTION = 1;
-    public const NO_BATCH_ACTION   = 2;
 
 }

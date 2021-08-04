@@ -39,6 +39,32 @@ final class TopologyRepositoryTest extends DatabaseTestCaseAbstract
     }
 
     /**
+     * @covers \Hanaboso\PipesPhpSdk\Database\Repository\TopologyRepository::getCountByEnable
+     *
+     * @throws Exception
+     */
+    public function testGetCountByEnable(): void
+    {
+        $repo   = $this->dm->getRepository(Topology::class);
+        $result = $repo->getCountByEnable(TRUE);
+        self::assertEquals(0, $result);
+
+        $topology = new Topology();
+        $topology->setName('name')
+            ->setVisibility(TopologyStatusEnum::PUBLIC)
+            ->setEnabled(TRUE);
+
+        $this->dm->persist($topology);
+        $this->dm->flush();
+
+        $result = $repo->getCountByEnable(TRUE);
+        self::assertEquals(1, $result);
+
+        $result = $repo->getCountByEnable(FALSE);
+        self::assertEquals(0, $result);
+    }
+
+    /**
      * @covers \Hanaboso\PipesPhpSdk\Database\Repository\TopologyRepository::getMaxVersion
      *
      * @throws Exception
@@ -176,6 +202,7 @@ final class TopologyRepositoryTest extends DatabaseTestCaseAbstract
         $topology = new Topology();
         $topology
             ->setName('name')
+            ->setEnabled(TRUE)
             ->setVisibility(TopologyStatusEnum::PUBLIC);
         $this->pfd($topology);
 

@@ -63,7 +63,7 @@ final class ConnectorHandlerTest extends DatabaseTestCaseAbstract
     {
         parent::setUp();
 
-        $this->handler = self::$container->get('hbpf.handler.connector');
+        $this->handler = self::getContainer()->get('hbpf.handler.connector');
     }
 
 }

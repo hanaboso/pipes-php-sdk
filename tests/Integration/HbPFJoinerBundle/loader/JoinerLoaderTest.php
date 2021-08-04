@@ -18,7 +18,7 @@ final class JoinerLoaderTest extends KernelTestCaseAbstract
      */
     public function testGetErr(): void
     {
-        $loader = self::$container->get('hbpf.loader.joiner');
+        $loader = self::getContainer()->get('hbpf.loader.joiner');
 
         self::expectException(JoinerException::class);
         $loader->get('null2');
@@ -30,7 +30,7 @@ final class JoinerLoaderTest extends KernelTestCaseAbstract
      */
     public function testGetAllJoiners(): void
     {
-        $loader = self::$container->get('hbpf.loader.joiner');
+        $loader = self::getContainer()->get('hbpf.loader.joiner');
 
         $fields = $loader->getAllJoiners();
         self::assertCount(1, $fields);

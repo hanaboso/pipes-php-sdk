@@ -33,7 +33,7 @@ class Topology
      *
      * @ODM\Field(type="string")
      */
-    protected string $name;
+    protected string $name = '';
 
     /**
      * @var int
@@ -66,9 +66,9 @@ class Topology
     /**
      * @var bool
      *
-     * @ODM\Field(type="boolean", options={"default":"1"})
+     * @ODM\Field(type="boolean", options={"default":"0"})
      */
-    protected bool $enabled = TRUE;
+    protected bool $enabled = FALSE;
 
     /**
      * @var string
@@ -98,23 +98,6 @@ class Topology
      * @ODM\Field(type="string")
      */
     protected string $contentHash = '';
-
-    /**
-     * Topology constructor.
-     */
-    public function __construct()
-    {
-        $this->bpmn        = '';
-        $this->category    = NULL;
-        $this->contentHash = '';
-        $this->descr       = '';
-        $this->enabled     = TRUE;
-        $this->name        = '';
-        $this->rawBpmn     = '';
-        $this->status      = StatusEnum::NEW;
-        $this->version     = 1;
-        $this->visibility  = TopologyStatusEnum::DRAFT;
-    }
 
     /**
      * @return string

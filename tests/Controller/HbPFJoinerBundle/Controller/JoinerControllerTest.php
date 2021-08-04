@@ -153,7 +153,7 @@ final class JoinerControllerTest extends ControllerTestCaseAbstract
                 },
             );
 
-        self::$container->set('hbpf.handler.joiner', $joinerHandlerMock);
+        self::getContainer()->set('hbpf.handler.joiner', $joinerHandlerMock);
     }
 
     /**
@@ -170,7 +170,7 @@ final class JoinerControllerTest extends ControllerTestCaseAbstract
             ->willThrowException(new JoinerException());
         $joinerHandlerMock->expects(self::any())->method('getJoiners')->willThrowException(new Exception());
 
-        self::$container->set('hbpf.handler.joiner', $joinerHandlerMock);
+        self::getContainer()->set('hbpf.handler.joiner', $joinerHandlerMock);
     }
 
     /**

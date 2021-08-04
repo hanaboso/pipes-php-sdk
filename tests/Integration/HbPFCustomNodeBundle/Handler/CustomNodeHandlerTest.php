@@ -59,7 +59,7 @@ final class CustomNodeHandlerTest extends DatabaseTestCaseAbstract
     {
         parent::setUp();
 
-        $this->handler = self::$container->get('hbpf.handler.custom_node');
+        $this->handler = self::getContainer()->get('hbpf.handler.custom_node');
     }
 
 }

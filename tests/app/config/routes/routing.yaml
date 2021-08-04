@@ -10,18 +10,10 @@ hb_pf_joiner:
     resource: "@HbPFJoinerBundle"
     type: annotation
 
-hb_pf_mapper:
-    resource: "@HbPFMapperBundle"
+hb_pf_application:
+    resource: "@HbPFApplicationBundle"
     type: annotation
 
 hb_pf_table_parser:
     resource: "@HbPFTableParserBundle"
-    type: annotation
-
-hb_pf_long_running:
-    resource: '@HbPFLongRunningNodeBundle'
-    type: annotation
-
-hb_pf_application:
-    resource: "@HbPFApplicationBundle"
     type: annotation

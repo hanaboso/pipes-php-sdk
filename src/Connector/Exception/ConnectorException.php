@@ -18,7 +18,6 @@ final class ConnectorException extends PipesFrameworkExceptionAbstract
     public const CONNECTOR_DOES_NOT_HAVE_PROCESS_EVENT    = self::OFFSET + 2;
     public const CONNECTOR_FAILED_TO_PROCESS              = self::OFFSET + 3;
     public const CONNECTOR_DOES_NOT_HAVE_PROCESS_ACTION   = self::OFFSET + 4;
-    public const CONNECTOR_DOES_NOT_HAVE_PROCESS_BATCH    = self::OFFSET + 5;
     public const INVALID_SETTING                          = self::OFFSET + 6;
     public const CUSTOM_NODE_DOES_NOT_HAVE_PROCESS_ACTION = self::OFFSET + 7;
     public const MISSING_APPLICATION                      = self::OFFSET + 8;

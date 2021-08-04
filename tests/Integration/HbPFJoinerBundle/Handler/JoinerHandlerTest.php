@@ -81,7 +81,7 @@ final class JoinerHandlerTest extends DatabaseTestCaseAbstract
     {
         parent::setUp();
 
-        $this->handler = self::$container->get('hbpf.handler.joiner');
+        $this->handler = self::getContainer()->get('hbpf.handler.joiner');
     }
 
 }

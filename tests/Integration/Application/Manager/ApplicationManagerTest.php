@@ -168,7 +168,7 @@ final class ApplicationManagerTest extends DatabaseTestCaseAbstract
     {
         parent::setUp();
 
-        $this->manager = self::$container->get('hbpf.application.manager');
+        $this->manager = self::getContainer()->get('hbpf.application.manager');
     }
 
     /**

@@ -21,7 +21,7 @@ final class JoinerHandlerTest extends KernelTestCaseAbstract
      */
     public function testJoin(): void
     {
-        $handler = self::$container->get('hbpf.handler.joiner');
+        $handler = self::getContainer()->get('hbpf.handler.joiner');
 
         $data = [
             'data' => [],

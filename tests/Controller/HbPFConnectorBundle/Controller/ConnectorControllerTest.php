@@ -54,7 +54,7 @@ final class ConnectorControllerTest extends ControllerTestCaseAbstract
         $handler = self::createPartialMock(ConnectorHandler::class, ['getConnectors']);
         $handler->expects(self::any())->method('getConnectors')->willThrowException(new ConnectorException());
 
-        self::$container->set('hbpf.handler.connector', $handler);
+        self::getContainer()->set('hbpf.handler.connector', $handler);
 
         $this->client->request('POST', '/connector/magento/webhook', [], [], [], '{}');
 
@@ -109,7 +109,7 @@ final class ConnectorControllerTest extends ControllerTestCaseAbstract
         $handler = self::createPartialMock(ConnectorHandler::class, ['getConnectors']);
         $handler->expects(self::any())->method('getConnectors')->willThrowException(new Exception());
 
-        self::$container->set('hbpf.handler.connector', $handler);
+        self::getContainer()->set('hbpf.handler.connector', $handler);
 
         $this->client->request('POST', '/connector/magento/action', [], [], [], '{}');
 
@@ -151,7 +151,7 @@ final class ConnectorControllerTest extends ControllerTestCaseAbstract
         $handler = self::createPartialMock(ConnectorHandler::class, ['getConnectors']);
         $handler->expects(self::any())->method('getConnectors')->willThrowException(new Exception());
 
-        self::$container->set('hbpf.handler.connector', $handler);
+        self::getContainer()->set('hbpf.handler.connector', $handler);
 
         $response = $this->sendGet('/connector/list');
         self::assertEquals(500, $response->status);
@@ -215,7 +215,7 @@ final class ConnectorControllerTest extends ControllerTestCaseAbstract
             ->setHeaders([]);
         $handler->method($method)->willReturn($dto);
 
-        self::$container->set('hbpf.handler.connector', $handler);
+        self::getContainer()->set('hbpf.handler.connector', $handler);
     }
 
     /**

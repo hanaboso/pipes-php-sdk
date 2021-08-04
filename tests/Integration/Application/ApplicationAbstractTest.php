@@ -99,7 +99,7 @@ final class ApplicationAbstractTest extends DatabaseTestCaseAbstract
     {
         parent::setUp();
 
-        $this->application = self::$container->get('hbpf.application.null');
+        $this->application = self::getContainer()->get('hbpf.application.null');
     }
 
     /**
