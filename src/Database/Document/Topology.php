@@ -18,7 +18,7 @@ use Hanaboso\Utils\String\Json;
  * @ODM\Document(
  *     repositoryClass="Hanaboso\PipesPhpSdk\Database\Repository\TopologyRepository",
  *     indexes={
- *         @ODM\Index(keys={"name": "asc", "version": "asc"}, unique="true")
+ *         @ODM\Index(keys={"name": "asc", "version": "asc"}, unique=true)
  *     }
  * )
  */
