@@ -73,8 +73,9 @@ final class ApplicationInstallRepository extends DocumentRepository
     {
         $ab  = $this->createAggregationBuilder();
         $res = $ab
-            ->group()->field('id')
-            ->expression('$key')
+            ->match()->field('deleted')->equals(FALSE)
+            ->group()
+            ->field('id')->expression('$key')
             ->field('total_sum')->sum(1)
             ->field('non_expire_sum')->sum(
                 $ab->expr()->cond(
