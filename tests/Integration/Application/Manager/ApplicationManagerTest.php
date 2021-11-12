@@ -46,7 +46,7 @@ final class ApplicationManagerTest extends DatabaseTestCaseAbstract
      */
     public function testGetApplication(): void
     {
-        self::assertEquals('null-key', $this->manager->getApplication('null')->getKey());
+        self::assertEquals('null-key', $this->manager->getApplication('null')->getName());
     }
 
     /**

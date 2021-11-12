@@ -17,24 +17,6 @@ final class ConnectorManagerTest extends KernelTestCaseAbstract
 {
 
     /**
-     * @covers \Hanaboso\PipesPhpSdk\Connector\Model\ConnectorManager::processEvent
-     * @covers \Hanaboso\PipesPhpSdk\Utils\ProcessDtoFactory::createFromRequest
-
-     * @throws Exception
-     */
-    public function testProcessEvent(): void
-    {
-        /** @var ConnectorManager $manager */
-        $manager = self::getContainer()->get('hbpf.manager.connector');
-
-        /** @var NullConnector $connector */
-        $connector = self::getContainer()->get('hbpf.connector.null');
-        $dto       = $manager->processEvent($connector, new Request());
-
-        self::assertEquals('', $dto->getData());
-    }
-
-    /**
      * @covers \Hanaboso\PipesPhpSdk\Connector\Model\ConnectorManager::processAction
      * @covers \Hanaboso\PipesPhpSdk\Connector\ConnectorAbstract::getApplicationKey
      *

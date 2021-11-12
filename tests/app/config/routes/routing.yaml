@@ -6,12 +6,12 @@ hb_pf_custom_node:
     resource: "@HbPFCustomNodeBundle"
     type: annotation
 
-hb_pf_joiner:
-    resource: "@HbPFJoinerBundle"
-    type: annotation
-
 hb_pf_application:
     resource: "@HbPFApplicationBundle"
+    type: annotation
+
+hb_pf_batch:
+    resource: "@HbPFBatchBundle"
     type: annotation
 
 hb_pf_table_parser:

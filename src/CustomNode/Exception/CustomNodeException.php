@@ -12,6 +12,4 @@ use Hanaboso\Utils\Exception\PipesFrameworkExceptionAbstract;
 final class CustomNodeException extends PipesFrameworkExceptionAbstract
 {
 
-    public const NO_PROCESS_ACTION = 1;
-
 }

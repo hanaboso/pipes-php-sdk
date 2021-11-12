@@ -174,37 +174,6 @@ paths:
                 500:
                     $ref: '#/components/responses/500'
 
-    /joiner/list:
-        get:
-            tags: [ Joiners ]
-            responses:
-                200:
-                    $ref: '#/components/responses/Connectors'
-                500:
-                    $ref: '#/components/responses/500'
-
-    /joiner/{id}/join:
-        post:
-            tags: [ Joiners ]
-            parameters:
-                -   $ref: '#/components/parameters/Id'
-            responses:
-                200:
-                    $ref: '#/components/responses/Empty'
-                500:
-                    $ref: '#/components/responses/500'
-
-    /joiner/{id}/join/test:
-        post:
-            tags: [ Joiners ]
-            parameters:
-                -   $ref: '#/components/parameters/Id'
-            responses:
-                200:
-                    $ref: '#/components/responses/Empty'
-                500:
-                    $ref: '#/components/responses/500'
-
     /parser/{type}/to/json:
         post:
             tags: [ Parsers ]
