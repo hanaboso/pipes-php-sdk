@@ -2,6 +2,7 @@
 
 namespace Hanaboso\PipesPhpSdk\Application\Repository;
 
+use Doctrine\ODM\MongoDB\MongoDBException;
 use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
 use Hanaboso\CommonsBundle\Process\ProcessDto;
 use Hanaboso\PipesPhpSdk\Application\Document\ApplicationInstall;
@@ -47,6 +48,20 @@ final class ApplicationInstallRepository extends DocumentRepository
     }
 
     /**
+     * @return int
+     * @throws MongoDBException
+     */
+    public function getInstalledApplicationsCount(): int
+    {
+        /** @var int $res */
+        $res = $this->createQueryBuilder()
+            ->field('deleted')->equals(FALSE)
+            ->count()->getQuery()->execute();
+
+        return $res;
+    }
+
+    /**
      * @param ProcessDto $dto
      * @param bool       $clear
      *
@@ -88,7 +103,8 @@ final class ApplicationInstallRepository extends DocumentRepository
                 ),
             )
             ->sort('id', 'ASC')
-            ->execute()
+            ->getAggregation()
+            ->getIterator()
             ->toArray();
 
         $ret = [];
