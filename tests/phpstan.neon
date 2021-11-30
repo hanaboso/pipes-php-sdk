@@ -8,6 +8,7 @@ parameters:
 		container_xml_path: %rootDir%/../../../var/cache/test/PipesPhpSdkTests_app_KernelTestDebugContainer.xml
 	ignoreErrors:
 		- '#Parameter \#2 \$auth_session_handle of method OAuth::getAccessToken\(\) expects string, null given.#'
+		- '#Service .* is private#'
 		-
 			message: '#Access to an undefined property#'
 			path: ../tests/*
