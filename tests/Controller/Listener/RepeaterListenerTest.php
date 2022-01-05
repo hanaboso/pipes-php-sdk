@@ -73,7 +73,7 @@ final class RepeaterListenerTest extends ControllerTestCaseAbstract
      */
     public function testOnRepeatableExceptionReturn(): void
     {
-        $listener  = self::$container->get('listener.repeater');
+        $listener  = self::getContainer()->get('listener.repeater');
         $eventMock = $this->mockEvent(new Exception('Upps, somehing went wrong.'));
         $listener->onRepeatableException($eventMock);
 

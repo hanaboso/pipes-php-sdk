@@ -13,7 +13,6 @@ use Hanaboso\CommonsBundle\Exception\NodeException;
 use Hanaboso\PipesPhpSdk\Database\Document\Dto\SystemConfigDto;
 use Hanaboso\PipesPhpSdk\Database\Document\Embed\EmbedNode;
 use Hanaboso\Utils\Exception\EnumException;
-use JsonException;
 
 /**
  * Class Node
@@ -343,7 +342,6 @@ class Node
 
     /**
      * @return SystemConfigDto|null
-     * @throws JsonException
      */
     public function getSystemConfigs(): ?SystemConfigDto
     {

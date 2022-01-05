@@ -19,6 +19,9 @@ use RabbitMqBundle\Utils\Message;
  * Trait RepeaterTrait
  *
  * @package Hanaboso\PipesPhpSdk\Utils
+ *
+ * @codeCoverageIgnore
+ * TODO needs revision for bridge v2
  */
 trait RepeaterTrait
 {

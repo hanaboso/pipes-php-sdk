@@ -230,7 +230,7 @@ final class RabbitCustomNodeTest extends DatabaseTestCaseAbstract
     }
 
     /**
-     * @covers \Hanaboso\PipesPhpSdk\CustomNode\Impl\RabbitCustomNode::process
+     * @covers \Hanaboso\PipesPhpSdk\CustomNode\Impl\RabbitCustomNode::processAction
      * @covers \Hanaboso\PipesPhpSdk\CustomNode\Impl\RabbitCustomNode::validate
      * @covers \Hanaboso\PipesPhpSdk\CustomNode\Impl\RabbitCustomNode::normalizeHeaders
      * @covers \Hanaboso\PipesPhpSdk\CustomNode\Impl\RabbitCustomNode::bindChannels
@@ -239,7 +239,7 @@ final class RabbitCustomNodeTest extends DatabaseTestCaseAbstract
      *
      * @throws Exception
      */
-    public function testProcess(): void
+    public function testProcessAction(): void
     {
         $node = new Node();
         $this->pfd($node);
@@ -255,7 +255,7 @@ final class RabbitCustomNodeTest extends DatabaseTestCaseAbstract
             ],
         );
 
-        $dto = $this->nullConnector->process($dto);
+        $dto = $this->nullConnector->processAction($dto);
         self::assertEquals(5, count($dto->getHeaders()));
     }
 

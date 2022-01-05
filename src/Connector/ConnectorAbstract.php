@@ -87,7 +87,7 @@ abstract class ConnectorAbstract implements ConnectorInterface
     public function getApplicationKey(): ?string
     {
         if ($this->application) {
-            return $this->application->getKey();
+            return $this->application->getName();
         }
 
         return NULL;

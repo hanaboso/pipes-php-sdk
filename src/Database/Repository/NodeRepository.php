@@ -85,14 +85,23 @@ final class NodeRepository extends DocumentRepository
      */
     public function getTopologyType(Topology $topology): string
     {
-        /** @var int $hasCron */
-        $hasCron = $this->createQueryBuilder()
-            ->count()
-            ->field('topology')->equals($topology->getId())
-            ->field('type')->equals(TypeEnum::CRON)
-            ->getQuery()->execute();
+        $hasCron = count($this->getCronNodes($topology));
 
         return $hasCron === 1 ? TypeEnum::CRON : TypeEnum::WEBHOOK;
+    }
+
+    /**
+     * @param Topology $topology
+     *
+     * @return Node[]
+     * @throws MongoDBException
+     */
+    public function getCronNodes(Topology $topology): array
+    {
+        return $this->createQueryBuilder()
+            ->field('topology')->equals($topology->getId())
+            ->field('type')->equals(TypeEnum::CRON)
+            ->getQuery()->toArray();
     }
 
     /**
