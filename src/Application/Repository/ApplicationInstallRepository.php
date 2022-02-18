@@ -53,12 +53,9 @@ final class ApplicationInstallRepository extends DocumentRepository
      */
     public function getInstalledApplicationsCount(): int
     {
-        /** @var int $res */
-        $res = $this->createQueryBuilder()
+        return $this->createQueryBuilder()
             ->field('deleted')->equals(FALSE)
             ->count()->getQuery()->execute();
-
-        return $res;
     }
 
     /**
@@ -119,6 +116,31 @@ final class ApplicationInstallRepository extends DocumentRepository
     }
 
     /**
+     * @return mixed[]
+     */
+    public function getUsersCount(): array
+    {
+        $res = $this->createQueryBuilder()
+            ->field('deleted')->equals(FALSE)
+            ->sort('id', 'ASC')
+            ->getQuery()
+            ->toArray();
+
+        $ret = [];
+        /** @var ApplicationInstall $item */
+        foreach ($res as $item) {
+            $ret[] = [
+                'id'                  => $item->getId(),
+                'name'                 => $item->getKey(),
+                'user'                 => $item->getUser(),
+                'nonEncryptedSettings' => $item->getNonEncryptedSettings(),
+            ];
+        }
+
+        return $ret;
+    }
+
+    /**
      * @param string $application
      *
      * @return mixed[]
@@ -141,7 +163,8 @@ final class ApplicationInstallRepository extends DocumentRepository
                     ->field('name')->ifNull('$user', ''),
             )
             ->sort('id', 'ASC')
-            ->execute()
+            ->getAggregation()
+            ->getIterator()
             ->toArray();
 
         $ret = ['_id' => $application];
