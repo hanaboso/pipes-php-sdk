@@ -53,9 +53,12 @@ final class ApplicationInstallRepository extends DocumentRepository
      */
     public function getInstalledApplicationsCount(): int
     {
-        return $this->createQueryBuilder()
+        /** @var int $res */
+        $res = $this->createQueryBuilder()
             ->field('deleted')->equals(FALSE)
             ->count()->getQuery()->execute();
+
+        return $res;
     }
 
     /**
