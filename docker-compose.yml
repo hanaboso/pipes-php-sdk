@@ -17,7 +17,7 @@ services:
             - COMPOSER_HOME=${HOME}/dev/.composer
             - PHP_WEBROOT=/var/www/tests/app/public
             - USER_TASK_LISTENER_ENABLE=false
-            - RABBIT_DSN=amqp://rabbitmq:5672
+            - RABBITMQ_DSN=amqp://rabbitmq:5672
 
     mongo:
         image: mongo:latest
