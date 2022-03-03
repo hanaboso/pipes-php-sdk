@@ -162,4 +162,18 @@ final  class TopologyRepository extends DocumentRepository
         return $this->findBy(['category' => $category->getId(), 'deleted' => FALSE]);
     }
 
+    public function getTopologiesById($topologyId): array
+    {
+        /** @var Iterator<Topology> $result */
+        $result = $this->createQueryBuilder()
+            ->field('enabled')->equals(TRUE)
+            ->field('deleted')->equals(FALSE)
+            ->getQuery()
+            ->execute();
+
+        return $result->toArray();
+
+        $dds = $this->findBy(['id'=> $topologyId, 'deleted' => FALSE, 'enabled' => TRUE]);
+    }
+
 }
