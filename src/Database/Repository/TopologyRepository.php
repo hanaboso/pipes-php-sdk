@@ -5,9 +5,11 @@ namespace Hanaboso\PipesPhpSdk\Database\Repository;
 use Doctrine\ODM\MongoDB\Iterator\Iterator;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
+use Exception;
 use Hanaboso\CommonsBundle\Enum\TopologyStatusEnum;
 use Hanaboso\PipesPhpSdk\Database\Document\Category;
 use Hanaboso\PipesPhpSdk\Database\Document\Topology;
+use MongoDB\BSON\ObjectId;
 
 /**
  * Class TopologyRepository
@@ -162,18 +164,36 @@ final  class TopologyRepository extends DocumentRepository
         return $this->findBy(['category' => $category->getId(), 'deleted' => FALSE]);
     }
 
+    /**
+     * @param $topologyId
+     *
+     * @return array
+     * @throws Exception
+     */
     public function getTopologiesById($topologyId): array
     {
         /** @var Iterator<Topology> $result */
-        $result = $this->createQueryBuilder()
-            ->field('enabled')->equals(TRUE)
+        $result = $this->createAggregationBuilder()
+            ->match()
             ->field('deleted')->equals(FALSE)
-            ->getQuery()
-            ->execute();
+            ->field('enabled')->equals(TRUE)
+            ->group()
+            ->field('id')->expression('$name')
+            ->field('topology')->push('$$ROOT')
+            ->field('ids')->push('$_id')
+            ->match()
+            ->field('ids')
+            ->equals(new ObjectId($topologyId))
+            ->unwind('$topology')
+            ->project()
+            ->excludeFields(['_id'])
+            ->field('id')->expression('$topology._id')
+            ->field('name')->expression('$topology.name')
+            ->field('version')->expression('$topology.version')
+            ->getAggregation()
+            ->getIterator();
 
         return $result->toArray();
-
-        $dds = $this->findBy(['id'=> $topologyId, 'deleted' => FALSE, 'enabled' => TRUE]);
     }
 
 }

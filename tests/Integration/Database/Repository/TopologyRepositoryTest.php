@@ -7,6 +7,7 @@ use Hanaboso\CommonsBundle\Enum\TopologyStatusEnum;
 use Hanaboso\PipesPhpSdk\Database\Document\Category;
 use Hanaboso\PipesPhpSdk\Database\Document\Topology;
 use Hanaboso\PipesPhpSdk\Database\Repository\TopologyRepository;
+use MongoDB\BSON\ObjectId;
 use PipesPhpSdkTests\DatabaseTestCaseAbstract;
 
 /**
@@ -209,6 +210,44 @@ final class TopologyRepositoryTest extends DatabaseTestCaseAbstract
         $repo   = $this->dm->getRepository(Topology::class);
         $result = $repo->getPublicEnabledTopologies();
         self::assertEquals('name', $result[0]->getName());
+    }
+
+    public function testGetTopologiesWithSameName()
+    {
+        $topology1 = new Topology();
+        $topology1
+            ->setName('testSame')
+            ->setEnabled(TRUE)
+            ->setVisibility(TopologyStatusEnum::PUBLIC);
+
+        $topology2 = new Topology();
+        $topology2
+            ->setName('testSame')
+            ->setEnabled(TRUE)
+            ->setVersion(2)
+            ->setVisibility(TopologyStatusEnum::PUBLIC);
+
+        $this->dm->persist($topology1);
+        $this->dm->persist($topology2);
+        $this->dm->flush();
+
+        /** @var TopologyRepository $repo */
+        $repo       = $this->dm->getRepository(Topology::class);
+        $topologies = $repo->getTopologiesById($topology1->getId());
+
+        $topologies = array_map(static fn($value): array => [
+            'id'=>$value['_id'],
+            'name'=>$value['name'],
+            'version' => $value['version']
+        ],
+            $topologies,
+        );
+
+        self::assertEquals(count($topologies), 2);
+        self::assertEquals($topologies[0]['name'], 'testSame');
+        self::assertEquals($topologies[1]['name'], 'testSame');
+        self::assertEquals($topologies[0]['version'], 1);
+        self::assertEquals($topologies[1]['version'], 2);
     }
 
 }
