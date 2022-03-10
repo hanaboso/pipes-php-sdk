@@ -15,6 +15,7 @@ pipes-php-sdk:git-mirror:
 
   variables:
     MIRROR_REPOSITORY_NAME: pipes-php-sdk
+    MIRROR_TRIGGER_REPO_VAR: hanaboso-pipes-php-sdk
 
   extends:
     - .base-git-mirror
