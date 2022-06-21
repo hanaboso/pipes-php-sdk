@@ -1,3 +1,5 @@
+Repository archived. Please use: [https://github.com/Orchesty/orchesty-php-sdk](https://github.com/Orchesty/orchesty-php-sdk)
+
 # Pipes PHP SDK
 
 ## Popis služby
